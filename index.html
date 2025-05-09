@@ -1,0 +1,168 @@
+ba<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faramas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .slide-up {
+            animation: slideUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: flex;
+        }
+        .indicator {
+            width: 30px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            margin: 0 4px;
+        }
+        .indicator.active {
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="bg-emerald-800 min-h-screen">
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="screen active flex flex-col items-center justify-center min-h-screen relative">
+        <div class="slide-up text-center">
+            <div class="text-yellow-400 text-6xl mb-4">
+                <i class="fas fa-home"></i>
+            </div>
+            <h1 class="text-yellow-400 text-4xl font-bold">Faramas</h1>
+        </div>
+        <button id="splash-go" class="fade-in absolute bottom-8 right-8 bg-yellow-400 text-emerald-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition-colors" style="animation-delay: 1s;">
+            GO
+        </button>
+    </div>
+
+    <!-- Second Screen -->
+    <div id="second-screen" class="screen min-h-screen relative">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); filter: brightness(0.7);"></div>
+        <div class="relative z-10 flex flex-col min-h-screen p-8">
+            <div class="flex justify-center mb-8">
+                <div class="text-yellow-400 text-4xl">
+                    <i class="fas fa-home"></i>
+                    <span class="ml-2 font-bold">Faramas</span>
+                </div>
+            </div>
+            <div class="flex-grow flex flex-col items-center justify-center text-center">
+                <h2 class="text-4xl font-bold text-white mb-4">Unlock Your Dream Home Journey with Us</h2>
+                <p class="text-lg text-white opacity-90 max-w-md">
+                    Discover a proper way to find your perfect home. Our app provides a personalized experience, matching you with dream properties.
+                </p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="flex space-x-2 mb-8">
+                    <div class="indicator active"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                </div>
+                <button id="second-go" class="bg-yellow-400 text-emerald-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition-colors">
+                    GO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Screen -->
+    <div id="third-screen" class="screen min-h-screen relative">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); filter: brightness(0.7);"></div>
+        <div class="relative z-10 flex flex-col min-h-screen p-8">
+            <div class="flex justify-center mb-8">
+                <div class="text-yellow-400 text-4xl">
+                    <i class="fas fa-home"></i>
+                    <span class="ml-2 font-bold">Faramas</span>
+                </div>
+            </div>
+            <div class="flex-grow flex flex-col items-center justify-center text-center">
+                <h2 class="text-4xl font-bold text-white mb-4">Your Home, Your Way, Our App</h2>
+                <p class="text-lg text-white opacity-90 max-w-md">
+                    Begin your adventure in the real estate landscape. Your journey to finding the perfect property begins with just a few simple steps.
+                </p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="flex space-x-2 mb-8">
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator active"></div>
+                </div>
+                <button id="third-go" class="bg-yellow-400 text-emerald-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition-colors">
+                    GO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const splashGo = document.getElementById('splash-go');
+            const secondGo = document.getElementById('second-go');
+            const thirdGo = document.getElementById('third-go');
+
+            const splashScreen = document.getElementById('splash-screen');
+            const secondScreen = document.getElementById('second-screen');
+            const thirdScreen = document.getElementById('third-screen');
+
+            splashGo.addEventListener('click', () => {
+                splashScreen.classList.remove('active');
+                secondScreen.classList.add('active');
+            });
+
+            secondGo.addEventListener('click', () => {
+                secondScreen.classList.remove('active');
+                thirdScreen.classList.add('active');
+            });
+
+            thirdGo.addEventListener('click', () => {
+                thirdScreen.classList.remove('active');
+                splashScreen.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
+</create_file>
+
+<thinking>
+I've created a single HTML file that includes:
+1. Three screens with smooth transitions
+2. Modern design using Tailwind CSS
+3. Beautiful animations for the logo and buttons
+4. Responsive layout that works on all screen sizes
+5. High-quality background images from Pexels
+6. The Faramas branding and color scheme
+
+Let me start a local server to preview the application.
+</thinking>
+
+<execute_command>
+<command>python3 -m http.server 8000</command>
+</execute_command>
